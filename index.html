@@ -18,23 +18,10 @@ body {
     overflow: hidden;
     background: #000;
     color: #fff;
-    cursor: none;
+    cursor: default; /* keep mouse visible */
 }
 
-/* Custom cursor */
-.cursor {
-    position: fixed;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
-    border: 2px solid #ff0000;
-    pointer-events: none;
-    mix-blend-mode: difference;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease;
-}
-
-/* Neon gradient background */
+/* Neon gradient background animation */
 body::before {
     content:"";
     position:fixed; top:0; left:0; width:100%; height:100%;
@@ -53,13 +40,13 @@ body::before {
 .particle {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.2;
+    opacity: 0.15;
     animation: floatParticle linear infinite;
     pointer-events: none;
 }
 @keyframes floatParticle {
     0% { transform: translateY(0) translateX(0) scale(1);}
-    50% { transform: translateY(-200px) translateX(50px) scale(1.5);}
+    50% { transform: translateY(-150px) translateX(50px) scale(1.2);}
     100% { transform: translateY(0) translateX(0) scale(1);}
 }
 
@@ -139,14 +126,14 @@ p {
 /* Disclaimer - main focus */
 .disclaimer {
     margin-top: 2rem;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
     color: #ff0000;
     background: #000;
     border: 3px solid #ff0000;
     border-radius: 20px;
-    padding: 15px;
-    box-shadow: 0 0 30px #ff0000, 0 0 60px #fff;
+    padding: 20px;
+    box-shadow: 0 0 50px #ff0000, 0 0 100px #fff;
     animation: disclaimerPulse 1s infinite alternate;
     text-transform: uppercase;
 }
@@ -174,15 +161,13 @@ p {
     100% { opacity: 1; transform: scale(1); }
 }
 @keyframes disclaimerPulse {
-    0% { box-shadow: 0 0 30px #ff0000, 0 0 60px #fff; transform: scale(1); }
-    50% { box-shadow: 0 0 60px #ff0000, 0 0 120px #fff; transform: scale(1.05); }
-    100% { box-shadow: 0 0 30px #ff0000, 0 0 60px #fff; transform: scale(1); }
+    0% { box-shadow: 0 0 40px #ff0000, 0 0 80px #fff; transform: scale(1); }
+    50% { box-shadow: 0 0 80px #ff0000, 0 0 160px #fff; transform: scale(1.08); }
+    100% { box-shadow: 0 0 40px #ff0000, 0 0 80px #fff; transform: scale(1); }
 }
 </style>
 </head>
 <body>
-
-<div class="cursor" id="cursor"></div>
 
 <!-- Floating particles -->
 <div id="particles"></div>
@@ -193,7 +178,7 @@ p {
 
     <!-- Header -->
     <h1>KMNx Links</h1>
-    <p>Clicking the links may show ads. This is how we support our funds!</p>
+    <p>Clicking the links below will show some ads. This helps us fund our projects!</p>
 
     <!-- Links -->
     <a class="link-button" href="https://shrinkme.top/KMNxDiscord" target="_blank"><i class="fab fa-discord"></i> KMNx Discord</a>
@@ -201,13 +186,13 @@ p {
     <a class="link-button" href="https://shrinkme.top/KMNxTikTok" target="_blank"><i class="fab fa-tiktok"></i> KMNx TikTok</a>
     <a class="link-button" href="https://shrinkme.top/KMNx" target="_blank"><i class="fas fa-globe"></i> KMNx Website</a>
 
-    <div class="disclaimer">⚠️ By clicking links, you will see ads – thank you for supporting us! ⚠️</div>
+    <div class="disclaimer">⚠️ This site is funded through ads – thank you for supporting us! ⚠️</div>
 </div>
 
 <script>
-// Particles
+// Floating particles
 const colors = ['#ff0000','#ffffff'];
-for(let i=0;i<60;i++){
+for(let i=0;i<50;i++){
     let p = document.createElement('div');
     p.classList.add('particle');
     p.style.width = p.style.height = Math.random()*8 + 4 + 'px';
@@ -217,13 +202,6 @@ for(let i=0;i<60;i++){
     p.style.animationDuration = 5 + Math.random()*10 + 's';
     document.body.appendChild(p);
 }
-
-// Custom cursor
-const cursor = document.getElementById('cursor');
-document.addEventListener('mousemove', e => {
-    cursor.style.top = e.clientY + 'px';
-    cursor.style.left = e.clientX + 'px';
-});
 </script>
 
 </body>
