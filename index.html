@@ -5,37 +5,49 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KMNx Links</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<!-- Font Awesome for icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
 /* Reset */
 * { margin:0; padding:0; box-sizing:border-box; }
 body {
     font-family: 'Poppins', sans-serif;
-    background: #000;
-    color: #fff;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    background: #000;
+    color: #fff;
 }
 
-/* Background floating shapes */
-.background-circle {
+/* Neon gradient background animation */
+body::before {
+    content:"";
+    position:fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: linear-gradient(45deg, #ff0000, #ffffff, #000000, #ff0000, #ffffff);
+    background-size: 400% 400%;
+    animation: gradientBG 20s ease infinite;
+    z-index:-2;
+}
+@keyframes gradientBG {
+    0% {background-position:0% 50%;}
+    50% {background-position:100% 50%;}
+    100% {background-position:0% 50%;}
+}
+
+/* Floating particles */
+.particle {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.15;
-    animation: float 15s infinite linear;
+    opacity: 0.2;
+    animation: floatParticle linear infinite;
+    pointer-events: none;
 }
-.circle1 { width: 200px; height: 200px; background: red; top: 5%; left: 10%; animation-delay: 0s; }
-.circle2 { width: 300px; height: 300px; background: white; top: 60%; left: 70%; animation-delay: 3s; }
-.circle3 { width: 150px; height: 150px; background: red; top: 40%; left: 40%; animation-delay: 6s; }
-.circle4 { width: 250px; height: 250px; background: white; top: 20%; left: 80%; animation-delay: 9s; }
-
-@keyframes float {
-    0%,100% { transform: translateY(0) translateX(0) rotate(0deg); }
-    50% { transform: translateY(-50px) translateX(50px) rotate(180deg); }
+@keyframes floatParticle {
+    0% { transform: translateY(0) translateX(0) scale(1);}
+    50% { transform: translateY(-200px) translateX(50px) scale(1.5);}
+    100% { transform: translateY(0) translateX(0) scale(1);}
 }
 
 /* Container */
@@ -44,29 +56,34 @@ body {
     z-index: 10;
     text-align: center;
     padding: 3rem;
-    border-radius: 20px;
-    background: rgba(0,0,0,0.85);
-    box-shadow: 0 0 40px rgba(255,0,0,0.6);
+    border-radius: 25px;
+    background: rgba(0,0,0,0.8);
+    box-shadow: 0 0 50px #ff0000, 0 0 100px #fff;
     animation: containerFade 2s ease forwards;
 }
 
 /* Logo */
 .logo {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    border: 3px solid red;
+    border: 4px solid #ff0000;
     margin-bottom: 1rem;
-    animation: logoPulse 2s infinite;
+    animation: logoNeon 1.5s infinite alternate;
 }
 
-/* Headings */
+/* Header text neon flicker */
 h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 1rem;
-    color: red;
-    text-shadow: 0 0 10px red;
-    animation: fadeInUp 2s ease forwards;
+    color: #ff0000;
+    text-shadow:
+        0 0 5px #ff0000,
+        0 0 10px #ff0000,
+        0 0 20px #ff0000,
+        0 0 40px #ff0000,
+        0 0 80px #ff0000;
+    animation: neonFlicker 1.5s infinite alternate;
 }
 p {
     margin-bottom: 2rem;
@@ -80,36 +97,36 @@ p {
     display: flex;
     align-items: center;
     gap: 15px;
-    margin: 10px auto;
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    margin: 15px auto;
+    padding: 18px 35px;
+    font-size: 1.3rem;
     font-weight: 700;
     color: #fff;
-    background: linear-gradient(135deg, red, black);
-    border: 2px solid red;
+    background: linear-gradient(135deg, #ff0000, #000);
+    border: 2px solid #ff0000;
     border-radius: 50px;
     cursor: pointer;
     text-decoration: none;
     transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    width: 280px;
+    width: 300px;
     justify-content: center;
     animation: fadeInUp 3s ease forwards;
+    box-shadow: 0 0 10px #ff0000, 0 0 20px #fff;
 }
 .link-button:hover {
-    transform: translateY(-7px) scale(1.05);
-    box-shadow: 0 0 20px red, 0 0 40px white;
-    background: linear-gradient(135deg, #ff0000, #550000);
+    transform: translateY(-10px) scale(1.08);
+    box-shadow: 0 0 30px #ff0000, 0 0 60px #fff;
+    background: linear-gradient(135deg, #ff5555, #550000);
 }
 .link-button i {
-    font-size: 1.5rem;
-    color: white;
-    animation: iconPulse 2s infinite;
+    font-size: 1.7rem;
+    animation: iconPulse 1.5s infinite alternate;
 }
 
 /* Disclaimer */
 .disclaimer {
     margin-top: 2rem;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     color: #aaa;
     animation: fadeInUp 3.5s ease forwards;
 }
@@ -119,27 +136,31 @@ p {
     0% { opacity: 0; transform: translateY(30px); }
     100% { opacity: 1; transform: translateY(0); }
 }
-@keyframes logoPulse {
-    0%,100% { transform: scale(1); box-shadow: 0 0 10px red; }
-    50% { transform: scale(1.1); box-shadow: 0 0 25px red; }
+@keyframes neonFlicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 80px #ff0000; }
+    20%, 22%, 24%, 55% { text-shadow: 0 0 2px #ff0000, 0 0 5px #ff0000, 0 0 10px #ff0000; }
 }
 @keyframes iconPulse {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+    0%,100% { transform: scale(1); text-shadow: 0 0 10px #ff0000,0 0 20px #fff; }
+    50% { transform: scale(1.3); text-shadow: 0 0 20px #ff0000,0 0 40px #fff; }
+}
+@keyframes logoNeon {
+    0% { box-shadow: 0 0 20px #ff0000,0 0 40px #fff; }
+    50% { box-shadow: 0 0 40px #ff0000,0 0 80px #fff; }
+    100% { box-shadow: 0 0 20px #ff0000,0 0 40px #fff; }
 }
 @keyframes containerFade {
     0% { opacity: 0; transform: scale(0.8); }
     100% { opacity: 1; transform: scale(1); }
 }
+
+/* Particle generation script */
 </style>
 </head>
 <body>
 
-<!-- Background Circles -->
-<div class="background-circle circle1"></div>
-<div class="background-circle circle2"></div>
-<div class="background-circle circle3"></div>
-<div class="background-circle circle4"></div>
+<!-- Background particles -->
+<div id="particles"></div>
 
 <div class="container">
     <!-- Logo -->
@@ -150,21 +171,30 @@ p {
     <p>By clicking the links below, you may see some ads. This helps us support our funds!</p>
 
     <!-- Links -->
-    <a class="link-button" href="https://shrinkme.top/KMNxDiscord" target="_blank">
-        <i class="fab fa-discord"></i> KMNx Discord
-    </a>
-    <a class="link-button" href="https://shrinkme.top/SNIPExYT" target="_blank">
-        <i class="fab fa-youtube"></i> Snipex's YouTube
-    </a>
-    <a class="link-button" href="https://shrinkme.top/KMNxTikTok" target="_blank">
-        <i class="fab fa-tiktok"></i> KMNx TikTok
-    </a>
-    <a class="link-button" href="https://shrinkme.top/KMNx" target="_blank">
-        <i class="fas fa-globe"></i> KMNx Website
-    </a>
+    <a class="link-button" href="https://shrinkme.top/KMNxDiscord" target="_blank"><i class="fab fa-discord"></i> KMNx Discord</a>
+    <a class="link-button" href="https://shrinkme.top/SNIPExYT" target="_blank"><i class="fab fa-youtube"></i> Snipex's YouTube</a>
+    <a class="link-button" href="https://shrinkme.top/KMNxTikTok" target="_blank"><i class="fab fa-tiktok"></i> KMNx TikTok</a>
+    <a class="link-button" href="https://shrinkme.top/KMNx" target="_blank"><i class="fas fa-globe"></i> KMNx Website</a>
 
     <div class="disclaimer">Thanks for supporting us! 💖</div>
 </div>
+
+<!-- Particle script -->
+<script>
+const particles = [];
+const colors = ['#ff0000','#ffffff'];
+for(let i=0;i<50;i++){
+    let p = document.createElement('div');
+    p.classList.add('particle');
+    p.style.width = p.style.height = Math.random()*8 + 4 + 'px';
+    p.style.background = colors[Math.floor(Math.random()*colors.length)];
+    p.style.top = Math.random()*100 + 'vh';
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.animationDuration = 5 + Math.random()*10 + 's';
+    document.body.appendChild(p);
+    particles.push(p);
+}
+</script>
 
 </body>
 </html>
