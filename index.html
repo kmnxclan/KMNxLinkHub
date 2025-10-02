@@ -3,115 +3,164 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>My Links</title>
+<title>KMNx Links</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-        font-family: 'Poppins', sans-serif;
-        background: linear-gradient(135deg, #1f1c2c, #928dab);
-        color: #fff;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow-x: hidden;
-    }
+/* Reset */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #000;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
-    .background-circle {
-        position: absolute;
-        border-radius: 50%;
-        opacity: 0.2;
-        animation: float 15s infinite;
-    }
+/* Background floating shapes */
+.background-circle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.15;
+    animation: float 15s infinite linear;
+}
+.circle1 { width: 200px; height: 200px; background: red; top: 5%; left: 10%; animation-delay: 0s; }
+.circle2 { width: 300px; height: 300px; background: white; top: 60%; left: 70%; animation-delay: 3s; }
+.circle3 { width: 150px; height: 150px; background: red; top: 40%; left: 40%; animation-delay: 6s; }
+.circle4 { width: 250px; height: 250px; background: white; top: 20%; left: 80%; animation-delay: 9s; }
 
-    .circle1 { width: 300px; height: 300px; background: #ff6b6b; top: 10%; left: 5%; animation-delay: 0s; }
-    .circle2 { width: 400px; height: 400px; background: #feca57; top: 50%; left: 60%; animation-delay: 5s; }
-    .circle3 { width: 250px; height: 250px; background: #48dbfb; top: 70%; left: 20%; animation-delay: 10s; }
+@keyframes float {
+    0%,100% { transform: translateY(0) translateX(0) rotate(0deg); }
+    50% { transform: translateY(-50px) translateX(50px) rotate(180deg); }
+}
 
-    @keyframes float {
-        0%,100% { transform: translateY(0) translateX(0); }
-        50% { transform: translateY(-50px) translateX(50px); }
-    }
+/* Container */
+.container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 3rem;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.85);
+    box-shadow: 0 0 40px rgba(255,0,0,0.6);
+    animation: containerFade 2s ease forwards;
+}
 
-    .container {
-        position: relative;
-        z-index: 10;
-        text-align: center;
-        padding: 2rem;
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        background: rgba(0,0,0,0.4);
-    }
+/* Logo */
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid red;
+    margin-bottom: 1rem;
+    animation: logoPulse 2s infinite;
+}
 
-    h1 { font-size: 2.5rem; margin-bottom: 1rem; animation: fadeIn 2s ease forwards; }
-    p { margin-bottom: 2rem; color: #ccc; font-size: 1rem; animation: fadeIn 2.5s ease forwards; }
+/* Headings */
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: red;
+    text-shadow: 0 0 10px red;
+    animation: fadeInUp 2s ease forwards;
+}
+p {
+    margin-bottom: 2rem;
+    color: #ccc;
+    font-size: 1rem;
+    animation: fadeInUp 2.5s ease forwards;
+}
 
-    .link-button {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 10px;
-        margin: 10px auto;
-        padding: 15px 25px;
-        font-size: 1.1rem;
-        font-weight: 600;
-        color: #fff;
-        background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        text-decoration: none;
-        transition: transform 0.3s, box-shadow 0.3s;
-        width: 250px;
-    }
+/* Buttons */
+.link-button {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 10px auto;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, red, black);
+    border: 2px solid red;
+    border-radius: 50px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    width: 280px;
+    justify-content: center;
+    animation: fadeInUp 3s ease forwards;
+}
+.link-button:hover {
+    transform: translateY(-7px) scale(1.05);
+    box-shadow: 0 0 20px red, 0 0 40px white;
+    background: linear-gradient(135deg, #ff0000, #550000);
+}
+.link-button i {
+    font-size: 1.5rem;
+    color: white;
+    animation: iconPulse 2s infinite;
+}
 
-    .link-button:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-    }
+/* Disclaimer */
+.disclaimer {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: #aaa;
+    animation: fadeInUp 3.5s ease forwards;
+}
 
-    .link-button img {
-        width: 30px;
-        height: 30px;
-    }
-
-    @keyframes fadeIn {
-        0% { opacity: 0; transform: translateY(20px); }
-        100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .disclaimer {
-        margin-top: 2rem;
-        font-size: 0.85rem;
-        color: #aaa;
-        animation: fadeIn 3s ease forwards;
-    }
+/* Animations */
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes logoPulse {
+    0%,100% { transform: scale(1); box-shadow: 0 0 10px red; }
+    50% { transform: scale(1.1); box-shadow: 0 0 25px red; }
+}
+@keyframes iconPulse {
+    0%,100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+@keyframes containerFade {
+    0% { opacity: 0; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1); }
+}
 </style>
 </head>
 <body>
 
+<!-- Background Circles -->
 <div class="background-circle circle1"></div>
 <div class="background-circle circle2"></div>
 <div class="background-circle circle3"></div>
+<div class="background-circle circle4"></div>
 
 <div class="container">
-    <h1>Welcome to My Links</h1>
-    <p>By clicking the links below, you may see some ads. This helps us support our funds and keep things running smoothly!</p>
+    <!-- Logo -->
+    <img src="Discord Logo.jpg" alt="KMNx Logo" class="logo">
 
-    <!-- Links with logos -->
+    <!-- Header -->
+    <h1>KMNx Links</h1>
+    <p>By clicking the links below, you may see some ads. This helps us support our funds!</p>
+
+    <!-- Links -->
     <a class="link-button" href="https://shrinkme.top/KMNxDiscord" target="_blank">
-        <img src="discord-logo.png" alt="Discord Logo"> KMNx Discord
+        <i class="fab fa-discord"></i> KMNx Discord
     </a>
     <a class="link-button" href="https://shrinkme.top/SNIPExYT" target="_blank">
-        <img src="youtube-logo.png" alt="YouTube Logo"> Snipex's YouTube
+        <i class="fab fa-youtube"></i> Snipex's YouTube
     </a>
     <a class="link-button" href="https://shrinkme.top/KMNxTikTok" target="_blank">
-        <img src="tiktok-logo.png" alt="TikTok Logo"> KMNx TikTok
+        <i class="fab fa-tiktok"></i> KMNx TikTok
     </a>
     <a class="link-button" href="https://shrinkme.top/KMNx" target="_blank">
-        <img src="website-logo.png" alt="Website Logo"> KMNx Website
+        <i class="fas fa-globe"></i> KMNx Website
     </a>
 
     <div class="disclaimer">Thanks for supporting us! 💖</div>
