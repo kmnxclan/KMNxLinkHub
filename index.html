@@ -18,16 +18,29 @@ body {
     overflow: hidden;
     background: #000;
     color: #fff;
+    cursor: none;
 }
 
-/* Neon gradient background animation */
+/* Custom cursor */
+.cursor {
+    position: fixed;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    border: 2px solid #ff0000;
+    pointer-events: none;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease;
+}
+
+/* Neon gradient background */
 body::before {
     content:"";
-    position:fixed;
-    top:0; left:0; width:100%; height:100%;
+    position:fixed; top:0; left:0; width:100%; height:100%;
     background: linear-gradient(45deg, #ff0000, #ffffff, #000000, #ff0000, #ffffff);
     background-size: 400% 400%;
-    animation: gradientBG 20s ease infinite;
+    animation: gradientBG 25s ease infinite;
     z-index:-2;
 }
 @keyframes gradientBG {
@@ -57,7 +70,7 @@ body::before {
     text-align: center;
     padding: 3rem;
     border-radius: 25px;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
     box-shadow: 0 0 50px #ff0000, 0 0 100px #fff;
     animation: containerFade 2s ease forwards;
 }
@@ -108,14 +121,14 @@ p {
     cursor: pointer;
     text-decoration: none;
     transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    width: 300px;
+    width: 320px;
     justify-content: center;
     animation: fadeInUp 3s ease forwards;
     box-shadow: 0 0 10px #ff0000, 0 0 20px #fff;
 }
 .link-button:hover {
-    transform: translateY(-10px) scale(1.08);
-    box-shadow: 0 0 30px #ff0000, 0 0 60px #fff;
+    transform: translateY(-10px) scale(1.1);
+    box-shadow: 0 0 40px #ff0000, 0 0 80px #fff, 0 0 20px #ff0000 inset;
     background: linear-gradient(135deg, #ff5555, #550000);
 }
 .link-button i {
@@ -123,12 +136,19 @@ p {
     animation: iconPulse 1.5s infinite alternate;
 }
 
-/* Disclaimer */
+/* Disclaimer - main focus */
 .disclaimer {
     margin-top: 2rem;
-    font-size: 0.9rem;
-    color: #aaa;
-    animation: fadeInUp 3.5s ease forwards;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #ff0000;
+    background: #000;
+    border: 3px solid #ff0000;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 0 30px #ff0000, 0 0 60px #fff;
+    animation: disclaimerPulse 1s infinite alternate;
+    text-transform: uppercase;
 }
 
 /* Animations */
@@ -153,13 +173,18 @@ p {
     0% { opacity: 0; transform: scale(0.8); }
     100% { opacity: 1; transform: scale(1); }
 }
-
-/* Particle generation script */
+@keyframes disclaimerPulse {
+    0% { box-shadow: 0 0 30px #ff0000, 0 0 60px #fff; transform: scale(1); }
+    50% { box-shadow: 0 0 60px #ff0000, 0 0 120px #fff; transform: scale(1.05); }
+    100% { box-shadow: 0 0 30px #ff0000, 0 0 60px #fff; transform: scale(1); }
+}
 </style>
 </head>
 <body>
 
-<!-- Background particles -->
+<div class="cursor" id="cursor"></div>
+
+<!-- Floating particles -->
 <div id="particles"></div>
 
 <div class="container">
@@ -168,7 +193,7 @@ p {
 
     <!-- Header -->
     <h1>KMNx Links</h1>
-    <p>By clicking the links below, you may see some ads. This helps us support our funds!</p>
+    <p>Clicking the links may show ads. This is how we support our funds!</p>
 
     <!-- Links -->
     <a class="link-button" href="https://shrinkme.top/KMNxDiscord" target="_blank"><i class="fab fa-discord"></i> KMNx Discord</a>
@@ -176,14 +201,13 @@ p {
     <a class="link-button" href="https://shrinkme.top/KMNxTikTok" target="_blank"><i class="fab fa-tiktok"></i> KMNx TikTok</a>
     <a class="link-button" href="https://shrinkme.top/KMNx" target="_blank"><i class="fas fa-globe"></i> KMNx Website</a>
 
-    <div class="disclaimer">Thanks for supporting us! 💖</div>
+    <div class="disclaimer">⚠️ By clicking links, you will see ads – thank you for supporting us! ⚠️</div>
 </div>
 
-<!-- Particle script -->
 <script>
-const particles = [];
+// Particles
 const colors = ['#ff0000','#ffffff'];
-for(let i=0;i<50;i++){
+for(let i=0;i<60;i++){
     let p = document.createElement('div');
     p.classList.add('particle');
     p.style.width = p.style.height = Math.random()*8 + 4 + 'px';
@@ -192,8 +216,14 @@ for(let i=0;i<50;i++){
     p.style.left = Math.random()*100 + 'vw';
     p.style.animationDuration = 5 + Math.random()*10 + 's';
     document.body.appendChild(p);
-    particles.push(p);
 }
+
+// Custom cursor
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+    cursor.style.top = e.clientY + 'px';
+    cursor.style.left = e.clientX + 'px';
+});
 </script>
 
 </body>
